@@ -30,9 +30,9 @@ By doing that the Docker ensures that the application will run on any other mach
 
 \begin{figure}[bth]
     \centering
-    \subfloat[Docker diagram]{{\includegraphics[width=5cm]{gfx/what-is-docker-diagram} }}
+    \subfloat[Vm diagram]{{\includegraphics[width=5cm]{gfx/what-is-docker-diagram} }}
     \qquad
-    \subfloat[Vm diagram]{{\includegraphics[width=5cm]{gfx/what-is-vm-diagram} }}
+    \subfloat[Docker diagram]{{\includegraphics[width=5cm]{gfx/what-is-vm-diagram} }}
     \caption{Docker vs Vm}
     \label{fig:dockervm}
 \end{figure}
@@ -90,15 +90,26 @@ The command line above instructs Docker to expose the default Spring Boot port o
 The command line above instructs Docker to change the work directory to where the .jar file is placed. 
 \begin{lstlisting}[frame=single]
   CMD ["java","-jar","Homepage-0.0.1-SNAPSHOT.jar"]
+  
 \end{lstlisting}
 
 The last command line instructs the container to run the .jar file. 
 
+After having done that its possible to build the image. The docker build command does all the heavy-lifting by creating docker image from Dockerfile. This is shown below:
+
+\begin{lstlisting}[frame=single]
+	$ docker build -t rh-th/Homepage .
+\end{lstlisting}
+
+After building the run command is used to run the image inside Docker container. 
 
 
 
-
-
+\begin{figure}[bht]
+  \centering
+      \includegraphics[width=0.5\textwidth]{gfx/container_explainer}
+  \caption{Container explainer}
+\end{figure}
 
 
 
