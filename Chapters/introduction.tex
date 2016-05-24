@@ -26,9 +26,9 @@ The main focus of this project is to understand, design \& implement the followi
 	\item Kubernetes
 \end{enumerate}
 
-The Fruitshop has spring boot services which are packed using Docker containers to make make sure that the environment service is running inside, stays static and it isn't dependant of underlying system and libraries. 
+The Fruitshop has spring boot services which are packed in Docker containers to make sure that the service runs inside the same environment and thereby is not dependent of underlying system and libraries. 
 
-Furthermore the Kubernetes is used to make the webshop more reliable and fault tolerant. The Kubernetes creates pods which contain replica of a services on different nodes within the cluster. The Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes. 
+Furthermore, Kubernetes is used to make the webshop more reliable, stable and fault tolerant. Kubernetes creates pods which contain replica of a services on different nodes within the cluster. Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes and it also handles increase or decreases the number of replicated pods depending on the load on the webshop. 
 
 
 
