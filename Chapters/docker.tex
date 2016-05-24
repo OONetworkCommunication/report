@@ -27,3 +27,37 @@ There 2 significantly different ways of building Docker containers:
 Building a container interactively make it possible to install libraries and configure the environment from a shell just like in a typical Linux environment. The modifications can be saved via commits identical to Git, it’s possible to track changes and see the status of modification.  
 
 On the other hand Dockerfile builds a container entirely through commands. A Dockerfile identifies a source container to start from (typically a basic Linux installation), then records a series of commands to install libraries and configure the environment. Dockerfiles can also load other Dockerfiles allowing for environment layering and concise organization of various software development projects. Dockerfiles can be versioned using a standard source control versioning tool like Git, allowing revision tracking and archiving of the computational environment.
+
+\subsection{PoC of Docker container}
+All the services in this project are packed using Docker containers. The Docker containers has all the necessary components and libraries to run a particular service. 
+
+In this project the Dockerfile technique is used to create Docker containers. 
+
+\begin{lstlisting}
+From java:8
+COPY /target/Homepage-0.0.1-SNAPSHOT.jar /data/
+EXPOSE 8080
+WORKDIR /data/
+CMD ["java","-jar","Homepage-0.0.1-SNAPSHOT.jar"]
+\label{DockerListing}
+\end{lstlisting}
+
+As it can be seen in the listing \ref{DockerListing} the Dockerfile consists of commands which targets the files placed in the target folder. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
