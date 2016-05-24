@@ -29,5 +29,7 @@ This project has main focus area is to understand, design&implement the followin
 
 The fruitshop has spring boot services which are packed using Docker containers to make somehow make sure that the environment service is running inside, stays static and it isn't dependant of underlying system. 
 
-Furthermore the Kubernetes is used to make the webshop more reliable and fault tolerant. The Kubernetes create pods which contain replica of a service and the Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes. 
- 
+Furthermore the Kubernetes is used to make the webshop more reliable and fault tolerant. The Kubernetes creates pods which contain replica of a services on different nodes within the cluster. The Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes. 
+
+
+
