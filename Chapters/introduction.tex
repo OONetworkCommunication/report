@@ -2,24 +2,23 @@
 \chapter{Introduction}\label{ch:introduction}
 %************************************************
 
-The fruitshop is a webshop which consists of 3 different Spring boot services.\\ 
+The Fruitshop is a webshop which consists of 4 different Spring boot services namely; Homepage, Basket, Search, and Contact service.\\ 
 
 
 \textbf{Homepage service}\\
-The Homepage service is the simplest service but could have big load of requests to it. Everyone entering the website needs to be navigated through Homepage service. 
-The Homepage service only consists of a search bar and links to all of the other services within the fruitshop domain.\\ 
+The Homepage service is the simplest service but could have big load of requests to it. Everyone entering the website needs to be navigated through the Homepage service. 
+The Homepage service consists of a search bar and links to all the other services within the Fruitshop domain.\\ 
 
 \textbf{Basket service }\\
-The basket service is used to place and delete order. The basket gives an overview of the products chosen to be brought. The user can press the pay button to pay for the chosen products and thereby dismiss the transaction.\\ 
+The basket service is used to place and delete orders. The basket gives an overview of the products chosen to be bought. The user can press the pay button to pay for the chosen products and thereby complete the transaction.\\ 
 
 \textbf{Search service }\\
-The search service gives the user opportunity of searching the entire available products within the scope of FruitShop. The end result of search service is a picture of product which was searched through search service.\\   
+The search service gives the user opportunity of searching the entire list of available products within the scope of Fruitshop. The end result of search service is a picture of the product which was looked up through the search service.\\   
 
 \textbf{Contact service}\\
-The contact service gives user opportunity of contacting the FruitShop via e-mail. The service is there to help user if anything went wrong.\\
+The contact service gives a user the opportunity of contacting the Fruitshop via e-mail. The service is there to provide the user with helpful information in case anything goes wrong or in case of questions.\\
 
-
-This project has main focus area is to understand, design&implement the following:  
+The main focus of this project is to understand, design \& implement the following areas:  
 
 \begin{enumerate}
 	\item Spring boot service
@@ -27,7 +26,7 @@ This project has main focus area is to understand, design&implement the followin
 	\item Kubernetes
 \end{enumerate}
 
-The fruitshop has spring boot services which are packed using Docker containers to make make sure that the environment service is running inside, stays static and it isn't dependant of underlying system and libraries. 
+The Fruitshop has spring boot services which are packed using Docker containers to make make sure that the environment service is running inside, stays static and it isn't dependant of underlying system and libraries. 
 
 Furthermore the Kubernetes is used to make the webshop more reliable and fault tolerant. The Kubernetes creates pods which contain replica of a services on different nodes within the cluster. The Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes. 
 
