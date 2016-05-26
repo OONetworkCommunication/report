@@ -38,17 +38,19 @@ The Spring Boot Framework makes it easy to deploy and run Spring based applicati
 	\item contain at least three data delivering services 
 \end{itemize}
 
-For creating a Microservice based on Spring Cloud we use Spring Boot to generate the java project with the necessary dependencies. For this project the dependency ``Web'' is used which among others contains Tomcat and Spring MVC libraries. We use the Spring MVC libraries to be able to create a graphical view for the user. This graphical user interface is created with HTML using the \emph{Thymeleaf} template by including the necessary dependency in the Maven POM-file. 
-\begin{lstlisting}[language=XML, frame=single]
+For creating a Microservice based on Spring Cloud we generate a Spring Boot project with the necessary dependencies using the \emph{Spring Initializr}\footnote{https://start.spring.io/}. For this project the dependency ``Web'' is used which among others contains Tomcat and Spring MVC libraries. We use the Spring MVC libraries to be able to create a graphical view for the user. This graphical user interface is created with HTML using the \emph{Thymeleaf} template by including the necessary dependency in the Maven POM-file, see listing \ref{lst:thymeleaf}. 
+\begin{lstlisting}[caption={Thymeleaf dependency in POM-file},label={lst:thymeleaf}, language=XML, frame=single, ]
 <dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
 \end{lstlisting}
-After building the microservices with a graphical user interface using html a configuration server is built using the Spring C  
+After building the microservices with a graphical user interface, it is necessary to setup Spring Cloud Config.
+First a Spring Boot project for the configuration server is generated from the Spring Initializr based on the Config Server dependency from Spring Cloud. As shown on figure \ref{fig:cloud-config} the Config Server is connected to a git repository. The git repository contains the configuration files which are loaded by the Config Server. In each service a Spring Cloud Config Client service is implemented such the services are able to adapt the configurations which the Config Server gets from the git repository.  
+\begin{figure}[bth]
+	\includegraphics[width=1\linewidth]{gfx/cloud-config}
+	\caption[cloudconfig]{Cloud configuration} \label{fig:cloud-config}
+\end{figure}    
 
-
-configuration server in a seperat repository
-Configurations files in the the repository
-
-In each service a Spring Cloud Cloud Config Client service is implemented.
+The API Gateway Pattern helps minimizing the number of requests made to the backend of the services.
+The API Gateway is implemented in the Hompage service.  
