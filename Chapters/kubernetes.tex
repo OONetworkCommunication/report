@@ -24,7 +24,36 @@ The containers or the pods in the nodes can be replicated, so if one node fails 
 If there suddenly comes a lot of load on a specific node it will make extra \emph{replicaset} of the pods so that the load is distributed between these pods and thereby the load is more balanced but only if the Kubernetes is set to autoscale. 
 
 \section{PoC of Kubernetes}
-After having put the services inside of Docker containers on our local machines we need to run them on the clusters. For running these services as Docker containers on the cluster it is necessary to put the service inside a Docker container from the cluster instead of locally. Therefore we build the jar file for the services locally using maven and move the jar file to the cluster. Then we run the Dockerfile on the cluster which puts our service inside a Docker container. When the service is packed inside a Docker container we will push this containerized service to Docker hub. To deploy and run the containerized service inside of Kubernetes on the Raspberry Pi cluster we call a command which deploys the Docker container on Kubernetes. Yaml files are used to descibe pods???? use... yml????.
+
+Before running the application within Kubernetes the verifing process was to run the applications in the local domaine. The process of verifing inwhich the application was tested and approved upon their behavior. If the application was behaving as anttend then the application was good to go for the cluster. 
+
+
+The verified applications then 
+
+
+All the services are packed using Docker containers. To run the  
+
+For running these services as Docker containers on the cluster it is necessary to put the service inside a Docker container from the cluster instead of locally.
+
+To deploy the service to Kubernetes its esstienal to build jar file within the cluster to have the rightful configuration setup.
+
+The following step the Dockerfile is run on the cluster which puts the service inside a Docker container. When the service is packed within Docker container the service is then pushed to Docker hub.   
+
+To run the containerized service inside of Kubernetes on the Raspberry Pi cluster the following command is used:
+
+\begin{lstlisting}
+COMMAND 
+\end{lstlisting}
+
+This command deploys the Docker container on Kubernetes. 
+
+Within Kubernetes the Yaml file is used to discribe the avalible resources and the number of replicas. It can be seen below:
+
+\begin{lstlisting}
+Yaml
+\end{lstlisting}
+
+
 %results image
 Secondly we scale number pods:
 %results image
