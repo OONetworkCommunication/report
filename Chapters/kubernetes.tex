@@ -1,13 +1,12 @@
 %************************************************
 \chapter{Kubernetes}\label{ch:kubernetes}
 %************************************************
-Topic 3: Write a brief introduction to the Kubernetes container cluster manager. 
-Design, develop, test, and document a functional proof-of-concept prototype using the Kubernetes container cluster manager. 
-
-This topic builds on top of the previous two topics 1 and 2 and should be able to:\\
-- deploy all containerized services in Kubernetes on the Raspberry Pi cluster \\
-- scale pods in Kubernetes \\
-- update pods with rolling-update \\
+In this chapter the Kubernetes cluster/container manager is briefly introduced. Furthermore, a proof-of-concept is made for Kubernetes running the different services from the Fruitshop. In the proof-of-concept following is done:
+\begin{itemize}
+	\item  All containerized services are deployed in Kubernetes on the Raspberry Pi cluster 
+	\item Pods in Kubernetes are scaled 
+	\item Pods are updated with \emph{rolling-update} 
+\end{itemize}
 
 \textbf{What is Kubernetes?}\\
 Kubernetes is a cluster management tool made by google to manage containerized applications. Kubernetes takes a bunch of nodes and make them appear as a one big computer and deploy container applications to the public or private cloud based on preference. Kubernetes abstracts away the discrete nodes and optimizes compute resources.  
@@ -36,6 +35,7 @@ The first thing that is done for deploying the containerized services in Kuberne
 \begin{lstlisting}[frame=single, ]
 kubectl run contact --image=bilalkais/contact -l visualize=true,run=contact --dry-run --output=yaml > contact-deployment.yaml
 \end{lstlisting}
+Note: If the Docker image is not available in the cluster, it will be cloned from the Docker Hub repository.\\
 
 The deployment of the contact service image can then be created with help of the newly generated yaml-file by use of the following command.
 \begin{lstlisting}[frame=single, ]
@@ -52,29 +52,18 @@ Then the contact service is executed with help of the generated yaml-file in the
 kubectl create -f contact-svc.yaml
 \end{lstlisting}
 
-The config server is a good example of a service which has to be fault-tolerant as all the other services are depended on it to be able to load the configuration. It was chosen to scale the config server deployment to four replicas as shown in figure \ref{fig:configserver-visual}. Following is the command used for scaling the deployment:
-\begin{lstlisting}[frame=single, ]
-kubectl create -f contact-svc.yaml
-\end{lstlisting}
-
+The config server is a good example of a service which has to be fault-tolerant as all the other services are depending on it to be able to load the configuration. It was chosen to scale the config server deployment to four replicas as shown in figure \ref{fig:configserver-visual}. 
 \begin{figure}[bth]
 	\centering 
-	\includegraphics[width=1.4\linewidth]{gfx/configServer4Replicas}
+	\includegraphics[width=1\linewidth]{gfx/configServer4Replicas}
 	\caption[configserver]{Visualisation of Config Server replicas running in Kubernetes} \label{fig:configserver-visual}
 \end{figure}
+Following is the command used for scaling the deployment:
+\begin{lstlisting}[frame=single, ]
+kubectl scale deployment configserver --replicas=4
+\end{lstlisting}
 
 
-Lastly we update the pods, using rolling-update:
+
+%Lastly we update the pods, using rolling-update:
 %results image
-
-
-
-%profiles - development port and default port
-%jar file
-%docker hub repository
-
-
-%\begin{figure}[bth]
-%	\includegraphics[width=1\linewidth]{gfx/pastry-routing}
-%	\caption[routingtable]{Routing table for Pastry} \label{fig:pastryrouting}
-%\end{figure}
