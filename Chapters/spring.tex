@@ -52,10 +52,27 @@ First a Spring Boot project for the configuration server is generated from the S
 	\caption[cloudconfig]{Cloud configuration} \label{fig:cloud-config}
 \end{figure}    
 
-The API Gateway Pattern helps minimizing the number of requests made to the backend of the services.
-The API Gateway is implemented in the Homepage service see figure \ref{fig:homepage-yml}.  
-\begin{figure}[bth]
-	\includegraphics[width=0.6\linewidth]{gfx/homepage-yml}
-	\caption[homepageyml]{Homepage yaml file} \label{fig:homepage-yml}
-\end{figure}    
-
+Zuul is used as an API Gateway to minimize the number of requests made to the backend of the services. It is implemented in the Homepage service.
+The listing \ref{lst:homepage-yml} shows the default part of the configuration for the homepage service including the configuration of the API Gateway.  
+\begin{lstlisting} [caption={Configuration file for the homepage service},label={lst:homepage-yml}, language=XML, frame=single, ]
+shopinfo:
+	title: FruitShop
+	
+server:
+	port: 80
+	
+zuul:  
+	routes:
+		search:
+			url: http://search:9001
+			path: /search/**
+			stripPrefix: false
+		basket:
+			url: http://basket:9002
+			path: /basket/**
+			stripPrefix: false
+		contact:
+			url: http://contact:9003
+			path: /contact/**
+			stripPrefix: false
+\end{lstlisting}
