@@ -45,12 +45,58 @@ For creating a Microservice based on Spring Cloud we generate a Spring Boot proj
 	<artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
 \end{lstlisting}
+In listing \ref{lst:thymeleaf} it is shown how the HTML view for homepage uses the Thymeleaf template.
+\begin{lstlisting}[caption={homepage.html},label={lst:thymeleaf-html}, language=HTML, frame=single, ]
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>FruitShop - We Banana wour Life</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 th:text="${title}" />
+<input type="text" id="keywords" placeholder="Search.." /> <input id="searchBtn" type="submit" value="Go"/>
+<p><a href="/basket">Basket</a></p>
+<p><a href="/contact">Contact</a></p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" />
+<script type="text/javascript">
+$(document).ready(function() {
+$('#searchBtn').click(function() {
+window.location.href ="search/?w=" + $('#keywords').val();
+});
+});
+</script>
+</body>
+</html>
+\end{lstlisting}
+
 After building the microservices with a graphical user interface, it is necessary to setup Spring Cloud Config.
 First a Spring Boot project for the configuration server is generated from the Spring Initializr based on the Config Server dependency from Spring Cloud. As shown on figure \ref{fig:cloud-config} the Config Server is connected to a git repository. The git repository contains the configuration files which are loaded by the Config Server. In each service a Spring Cloud Config Client service is implemented such the services are able to adapt the configurations which the Config Server gets from the git repository.  
 \begin{figure}[bth]
 	\includegraphics[width=1\linewidth]{gfx/cloud-config}
 	\caption[cloudconfig]{Cloud configuration} \label{fig:cloud-config}
-\end{figure}    
+\end{figure}
+
+Listing \ref{lst:homepageController} shows the implementation of the homepage  controller which loads the Fruitshop title from the configuration:  
+\begin{lstlisting} [caption={HomepageController.java},label={lst:homepageController}, language=Java, frame=single, ]
+@Grab("org.webjars:jquery:2.0.3-1")
+@RefreshScope
+@Component
+@Controller
+@EnableZuulProxy
+public class HomepageController {
+
+	@Value("${shopinfo.title}")
+	String shopTitle;
+
+	@RequestMapping("/")
+	public String homepage(Model model) {
+		model.addAttribute("title", "Welcome to " + shopTitle + " ~");
+		return "homepage";
+	}
+}
+\end{lstlisting}
 
 Zuul is used as an API Gateway to minimize the number of requests made to the backend of the services. It is implemented in the Homepage service.
 The listing \ref{lst:homepage-yml} shows the default part of the configuration for the homepage service including the configuration of the API Gateway.  
