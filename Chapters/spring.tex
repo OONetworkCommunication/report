@@ -38,8 +38,14 @@ The Spring Boot Framework makes it easy to deploy and run Spring based applicati
 	\item contain at least three data delivering services 
 \end{itemize}
 
-For creating a Microservice based on Spring Cloud we use Spring Boot to generate the java project with the necessary dependencies. For this project the dependency ``Web'' is used which among others contains Tomcat and Spring MVC libraries. We use the Spring MVC libraries to be able to create a graphical view for the user. This graphical user interface is created with HTML using the \emph{Thymeleaf} template by including the necessary dependency in them Maven POM file. 
-After building the microservices with a graphical user interface using html a configuration server 
+For creating a Microservice based on Spring Cloud we use Spring Boot to generate the java project with the necessary dependencies. For this project the dependency ``Web'' is used which among others contains Tomcat and Spring MVC libraries. We use the Spring MVC libraries to be able to create a graphical view for the user. This graphical user interface is created with HTML using the \emph{Thymeleaf} template by including the necessary dependency in the Maven POM-file. 
+\begin{lstlisting}[language=XML, frame=single]
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+\end{lstlisting}
+After building the microservices with a graphical user interface using html a configuration server is built using the Spring C  
 
 
 configuration server in a seperat repository
