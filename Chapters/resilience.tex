@@ -7,8 +7,6 @@ Topic 4: Write a brief introduction to Resilience in microservice architectures 
 - hand in exercise report
 - run load-testing against your project architecture to see the effects
 
-The word resilience mean "The capacity to recover quickly from difficulties". there are many definitions of the resilience, one of the definitions is taken from the book "The Resilience of Networked Infrastructure Systems". Fiskel (2003) defines a resilient system as a system that has the ability to return to a stable equilibrium state after a perturbation. 
-
 There are different categories of potential disruptions to system that create the need to implement the resilience in systems. In the figure \ref{ch:resilience} below the sources of disruptions is showed. 
 
 \begin{figure}[bth]
@@ -36,6 +34,19 @@ There are different categories of potential disruptions to system that create th
 \end{itemize}
 
 All the factors described above need to be considered in the system to avoid disruption. 
+
+First of all the question is what is resilience? There are many definitions on that word depending on in what context it is used. In the sense of microservices the definition could sound: the power or ability to return to the original form, position, etc., after being bent, compressed, or stretched; elasticity.
+
+Thus, from the definition above the resilient system should be able to cope with problem and at the same time be fast to recover. 
+
+In the case of microservices the services are highly decoupled. By the isolation of microservices makes them independent from each other, so in the case of that one of them fails the other services do not stop working. By having the services decoupled in the system we get a lot of resilience into applications, thus they get ability to handle disruptions. 
+
+   
+
+This isolation of simple small services makes them independent from each other, so that when one fails the others don’t stop working.   
+
+  
+
 
 
 

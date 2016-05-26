@@ -101,15 +101,41 @@ After having done that its possible to build the image. The docker build command
 	$ docker build -t rh-th/Homepage .
 \end{lstlisting}
 
-After building the run command is used to run the image inside Docker container. 
-
+After building the run command is used to run the image inside Docker container. Which is explain in figure \ref{fig:DockerRun}.
 
 
 \begin{figure}[bht]
   \centering
       \includegraphics[width=0.5\textwidth]{gfx/container_explainer}
   \caption{Container explainer}
+  \label{fig:DockerRun}
 \end{figure}
+
+
+After running the application in Docker the service then can be accessed using the browser where the IP address is 127.0.0.1 and with the chosen port number.
+
+\begin{lstlisting}
+http:\\localhost:8080
+\end{lstlisting} 
+
+When verifying the service one noticeable thing was that the services was quite slow when they were deployed to the Raspberry Pi, which does make sense. The development computer used for running the the service locally was much faster then the Raspberry Pi. 
+
+The services was pushed to the Docker hub by doing so the Docker checks for the latest version of the application to be run. 
+
+Docker while running provides a lots of information about running Docker containers. 
+
+
+\begin{figure}[bth]
+  \centering
+      \includegraphics[width=0.5\textwidth]{gfx/DockerPs}}
+  \caption{The Docker application running}
+   \label{fig:DockerPs}
+\end{figure}
+
+
+
+
+
 
 
 
