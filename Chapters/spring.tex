@@ -1,5 +1,5 @@
 %************************************************
-\chapter{Spring Cloud and Boot}\label{ch:spring}
+\chapter{Spring Boot and Cloud Frameworkt}\label{ch:spring}
 %************************************************
 Report and prototype requirements - topics to be covered
 
@@ -11,17 +11,34 @@ Topic 1: Write a brief introduction to the Spring Boot and Cloud Frameworks. Des
 \item contain at least three data delivering services 
 \end{itemize}
 
+\textbf{What is Spring Cloud?}\\
+The Spring Cloud Framework provides an implementation of many of the different patterns used  building distributed systems. Spring Cloud builds on some common elements from the Spring Framework. Spring Cloud provides tools to some of the most common patterns in distributed systems such it is easier for developers to build these patterns. It provides among other tools for configuration management, service discovery, intelligent routing, Load balancing and much more patterns.
+Furthermore, Spring Cloud builds on the concepts from Spring Boot  
 
+\\
 
+\textbf{What is Spring Boot?}\\
+Spring Boot is 
+\\
+%ref: http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html 
 Microservices is a new architectural style that aims to realize software systems as a package of small services, each deployable on different platform. Every single Microservice has its own process while communicating with other services via lightweight mechanisms like RESTFull APIs.\\
 
 All the services has business capability which can utilize various programming languages and data stores. A system has a microservices architecture when that system is composed of several services without any centralized control.\\
 
-Resilience to failure is another characteristic of microservices as every request in this new setting gets translated to
-several service calls through the system. To have a fully functional microservices architecture and to take advantage of all of its benefits, the following components have to be utilized. Most of these components address the complexities of distributing the business logic among the services:
+Resilience to failure is another characteristic of microservices as every request in this new setting gets translated to several service calls through the system. To have a fully functional microservices architecture and to take advantage of all of its benefits, the following components have to be utilized. Most of these components addresses the complexities of distributing the business logic among the services:
 
 \begin{itemize}
 	\item Configuration Server: It is one of the principles of Continuous Delivery to decouple source code from its configuration. It enables us to change the configuration of our application without redeploying the code. As a microservices architecture have so many services, and their re-deployment is going to be costly, it is better to have a configuration server so that the services could fetch their corresponding configurations.
 \item Service Discovery: 
 In a microservices architecture, there exist several services that each of them might have many instances in order to scale themselves to the underlying load. Thus, keeping track of the deployed services, and their exact address and port number is a cumbersome task. The solution is to use a Service Discovery component in order to get the available instances of each service.		
 \end{itemize}
+
+
+\section{Spring Boot and Cloud Framework PoC}
+\begin{itemize}
+	\item be configured remotely, so that every client fetches configuration at boot-time from a central configuration server
+	\item contain a simple graphical user interface
+	\item leverage the gateway API pattern to distribute requests to specific services
+	\item contain at least three data delivering services 
+\end{itemize}
+
