@@ -50,7 +50,7 @@ The concern not having the service discovery in a microservices Architecture cou
 
 \textbf{The client-Side Discovery Pattern}
 
-One of the approaches to service discovery is the client-side discovery pattern. In the client-side pattern the client has the responsible of determining the network locations of available services, and furthermore has the responsible of load-balancing requests. In the service registry the client can query for available services. The service registry then return a list of available services to the client, by using the load-balancing algorithm the client makes request for the available service. Services periodontally send a heartbeat to the service registry to say I'am in live. The network location for a specific service is removed from the service registry when it terminate. The client needs to have the business logic of the load-balancer, which is a cons that requires a lot of traffic on the client.
+One of the approaches to service discovery is the client-side discovery pattern. In the client-side pattern the client has the responsibility of determining the network locations of available services, and furthermore has the responsibility of "load-balancing" requests. In the service registry the client can query for available services. The service registry then return a list of available services to the client, by using the load-balancing algorithm. Services periodontally send a heartbeat to the service registry to say "I'am alive". The network location for a specific service is removed from the service registry when it terminate. The client needs to have the business logic of the load-balancer, which is a cons that requires a lot of traffic on the client.
 
 \textbf{The server-side discovery pattern}
 
