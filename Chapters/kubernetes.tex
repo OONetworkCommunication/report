@@ -10,13 +10,22 @@ This topic builds on top of the previous two topics 1 and 2 and should be able t
 - update pods with rolling-update \\
 
 \textbf{What is Kubernetes?}\\
-Kubernetes is an open-source container management system developed by Google.
-Kubernetes is used for automating management of containers such as scaling, loadbalancing and scheduling containers between nodes in a cluster. Containers are run inside something called a pod.
-A pod is a group of containers that are scheduled onto the same host.
-Pods are used for gathering containers that are tightly coupled to each other under the same host such communication between containers becomes easier. Every pod has it's own ip address. Kubernetes schedules, deploy and scale pods such they among other ensure that the load is balanced in the cluster. 
 
-The containers in the nodes are replicated, so if one node fails Kubernetes will create a new pod on another node and run the container within this newly created pod. 
-If there suddenly comes a lot of load on a specific node it will make extra \emph{replicaset} of the pods so that the load is distributed between these pods and thereby the load is more balanced. 
+Kubernetes is a cluster management tool made by google to manage containerized applications. The Kubernetes takes the bunch of nodes and make them appear as a one big computer and deploy container applications to the public or private cloud based on preference. The Kubernetes abstracts away the discrete nodes and optimizes compute resources.  
+
+Moreover the Kubernetes make use of declarative approach to get the desired state for the application mentioned by the user. 
+
+Whenever an application is deployed onto the cluster, the Kubernetes master node have to decide and deploy the application to the rightful host. Kubernetes does all the heavy lifting by using its scheduler. 
+
+Furthermore Kubernetes is selfhealing, auto restarting, replication and rescheduling mechanisms makes it the ideal choice for the container. The Kubernetes makes enviroment much more robust for the container deployment. 
+
+
+Kubernetes is used for automating management of containers such as scaling, loadbalancing and scheduling containers between nodes in a cluster. Containers are run inside pods.
+
+A pod is a group of containers which are scheduled onto the same host. They are used to gather containers that are tightly coupled to each other under the same host such that communication between containers becomes easier. Every pod has it's own ip address because of namespaces. Kubernetes schedules, deploy and scale pods such they among other ensure that the load is balanced in the cluster. 
+
+The containers in the nodes can be replicated, so if one node fails Kubernetes will create a new pod on another node and run the container within this newly created pod. The Kubernetes keeps track of all the living pods using its built-in registry service.  
+If there suddenly comes a lot of load on a specific node it will make extra \emph{replicaset} of the pods so that the load is distributed between these pods and thereby the load is more balanced but only if the Kubernetes is set to autoscale. 
 
 \section{PoC of Kubernetes}
 After having put the services inside of Docker containers on our local machines we need to run them on the clusters. For running these services as Docker containers on the cluster it is necessary to put the service inside a Docker container from the cluster instead of locally. Therefore we build the jar file for the services locally using maven and move the jar file to the cluster. Then we run the Dockerfile on the cluster which puts our service inside a Docker container. When the service is packed inside a Docker container we will push this containerized service to Docker hub. To deploy and run the containerized service inside of Kubernetes on the Raspberry Pi cluster we call a command which deploys the Docker container on Kubernetes. Yaml files are used to descibe pods???? use... yml????.
