@@ -20,9 +20,9 @@ Each ccTLD identifies a particular country and is two letters long.
 
 \begin{figure}[bth]
 \includegraphics[width=1\linewidth]{gfx/DNShierarchy}
-\caption[routingtable]{Routing table for Pastry} \label{fig:DNShierarchy}
+\caption[routingtable]{DNS hierarchy} \label{fig:DNShierarchy}
 \end{figure}
-\\
+
 \textbf{Recursive Query Vs Iterative Query in DNS}
 
 A recursive query is a kind of query, in which the DNS server, who received the query, will do the entire job fetching the answer, and giving it back to client. If DNS server is not able to resolve the requested query then it forwards the query to another DNS server until it gets an answer or the query fails.
@@ -46,15 +46,15 @@ Service discovery protocols (SDP) are network protocols which allows automatic f
 
 \textbf{Service Discovery in a Microservices Architecture}
 
-The issue not having the service discovery could for instance be if you have some code to invoke a service that has a REST API. To make a request on a specific service you need to know it's IP address and port number. In a cloud-based microservices application the problem occurs since the services have dynamically assigned IP addresses and Ports. The reason why services have dynamically network location is based on failures, upgrades and auto-scaling. There are two service discovery patterns called client-side discovery and server-side discovery, to solve the issue described above.        
+The concern not having the service discovery in a microservices Architecture could for instance in the case of you have some code to invoke a service that has a REST API. To make a request on a specific service you need to know it's IP address and port number. In a cloud-based microservices application the problem occurs since the services runs inside the pods, and the pods have dynamically assigned IP addresses and Ports. The reason why pods have dynamically network location is based on failures, upgrades and auto-scaling. There are two service discovery patterns called client-side discovery and server-side discovery, to solve the issue described above.         
 
 \textbf{The client-Side Discovery Pattern}
 
-One of the approaches to service discovery is the client-side discovery pattern. In the client-side pattern the client has the responsible of determining the network locations of available services, and furthermore has the responsible of load balancing requests across them. In the service registry the client can query for available services. By using the load-balancing algorithm and selecting an available service the client can make request for the service. The network location for a specific service is removed from the service registry when it terminate.
+One of the approaches to service discovery is the client-side discovery pattern. In the client-side pattern the client has the responsible of determining the network locations of available services, and furthermore has the responsible of load-balancing requests. In the service registry the client can query for available services. The service registry then return a list of available services to the client, by using the load-balancing algorithm the client makes request for the available service. Services periodontally send a heartbeat to the service registry to say I'am in live. The network location for a specific service is removed from the service registry when it terminate. The client needs to have the business logic of the load-balancer, which is a cons that requires a lot of traffic on the client.
 
 \textbf{The server-side discovery pattern}
 
-The other approach to service discovery is the server-side discovery pattern. The approach is almost the same like in Client-Side Discovery Pattern, the difference is that client makes a request to service via load balancer, the load balancer then queries the service registry and routes each request to the available service. Figure \ref{fig:ClienServerService} shows the client-Side Discovery Pattern and the server-side discovery pattern  
+The other approach to service discovery is the server-side discovery pattern. The approach is almost the same like in Client-Side Discovery Pattern, the difference is that client makes a request to service via load balancer, the load balancer then queries the service registry and return a list of available services to the load balancer. The load balancer then routes each request to the available service. The client only needs to concern to send requests to the load-balancer, and nothing else this is the pros of server-side discovery pattern.    Figure \ref{fig:ClienServerService} shows the differences between client-Side Discovery Pattern and the server-side discovery pattern  
 
 
 
@@ -70,4 +70,4 @@ The other approach to service discovery is the server-side discovery pattern. Th
 
 
 \textbf{How may Service Discovery be beneficial in cluster and cloud computing?}  
-
+like described above, the server-side discovery pattern is used in Cloud computing. The way of register the services in service register and then send a list of available services on the cluster to load-balancer, while the load-balancer find the available service for the client has proved to be efficient.   
