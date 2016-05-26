@@ -52,16 +52,15 @@ Then the contact service is executed with help of the generated yaml-file in the
 kubectl create -f contact-svc.yaml
 \end{lstlisting}
 
-The config server is a good example of a service which has to be fault-tolerant as all the other services are depended on it to be able to load the configuration. It was chosen to scale the config server deployment to four replicas as shown in figure . Following is the commando showing the scaling of pods is achieved:
+The config server is a good example of a service which has to be fault-tolerant as all the other services are depended on it to be able to load the configuration. It was chosen to scale the config server deployment to four replicas as shown in figure \ref{fig:configserver-visual}. Following is the command used for scaling the deployment:
 \begin{lstlisting}[frame=single, ]
 kubectl create -f contact-svc.yaml
 \end{lstlisting}
 
 \begin{figure}[bth]
-	\centering
-		\includegraphics[width 0.5]\textwidth]{gfx/configServer4Replicas}
-	\caption{Screenshoot}
-	\label{fig:,,,,}
+	\centering 
+	\includegraphics[width=1.4\linewidth]{gfx/configServer4Replicas}
+	\caption[configserver]{Visualisation of Config Server replicas running in Kubernetes} \label{fig:configserver-visual}
 \end{figure}
 
 
