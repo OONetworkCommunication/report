@@ -21,14 +21,14 @@ Resilience to failure is another characteristic of microservices as every reques
 \begin{itemize}
 	\item Configuration Server: It is one of the principles of Continuous Delivery to decouple source code from its configuration. It enables us to change the configuration of our application without redeploying the code. As a microservices architecture have so many services, and their re-deployment is going to be costly, it is better to have a configuration server so that the services could fetch their corresponding configurations.
 	\item Service Discovery: 
-	In a microservices architecture, there exist several services that each of them might have many instances in order to scale themselves to the underlying load. Thus, keeping track of the deployed services, and their exact address and port number is a cumbersome task. The solution is to use a Service Discovery component in order to get the available instances of each service.		
+	In a microservices architecture, there exist several services that each of them might have many instances in order to scale themselves to the underlying load. Thus, keeping track of the deployed services, and their exact address and port number is a cumbersome task. The solution is to use a Service Discovery component in order to get the available instances of each service.\cite{newman2015building}	
 \end{itemize}
 
 \textbf{What is Spring Cloud?}\\
 The Spring Cloud Framework provides an implementation of many of the different patterns used for building distributed systems. Spring Cloud builds on some common elements from the Spring Framework and Spring Boot Framework. Spring Cloud provides tools to some of the most common patterns in distributed systems such it is easier for developers to build these patterns. It provides among other tools for configuration management, service discovery, intelligent routing, Load balancing and much more patterns.\\
 
 \textbf{What is Spring Boot?}\\
-The Spring Boot Framework makes it easy to deploy and run Spring based applications. Spring Boot can with minimal Spring configuration create and run a \eg Spring Cloud based application in java.  \\
+The Spring Boot Framework makes it easy to deploy and run Spring based applications. Spring Boot can with minimal Spring configuration create and run a \eg Spring Cloud based application in java. \cite{SpringDocker}  \\
 %ref: http://www.kennybastani.com/2015/07/spring-cloud-docker-microservices.html 
 
 

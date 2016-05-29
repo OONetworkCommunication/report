@@ -1,10 +1,10 @@
 %************************************************
-\chapter{Docker}\label{ch:docker}
+\chapter{Docker}\label{ch:docker} \cite{joy2015performance} 
 %************************************************
-This chapter will present a brief introduction to Docker containers.  Design, develop, test, and document a functional proof-of-concept prototype using Docker containers. This builds on top of topic 1 and should be able to
+This chapter will present a brief introduction to Docker containers.  Design, develop, test, and document a functional proof-of-concept prototype using Docker containers. This builds on top of Spring Boot and should be able to
 
 \begin{itemize}
-\item Build docker containers of each service in topic 1
+\item Build docker containers of each service
 \item Run docker containers locally and on a Raspberry Pi
 \item Deploy images to Docker Hub
 \end{itemize}
@@ -25,7 +25,7 @@ Docker containers allows packaging of software applications with all its depende
 The main purpose of Docker is to ship the whole application with it's whole environment configuration as a single package so that it easily can run on other environments, regardless of any customized settings the particular machine might have.
 
 
-\begin{figure}[bth]
+\begin{figure}[h!]
     \centering
     \subfloat[Vm diagram]{{\includegraphics[width=5cm]{gfx/what-is-docker-diagram} }}
     \qquad
@@ -42,7 +42,7 @@ A docker container can be run at any time with the confidence of that the docker
 
 
 There are 2 significantly different ways of building Docker containers:
-
+\newpage
 \begin{enumerate}
 	\item Interactively
 	\item Dockerfile
@@ -50,13 +50,14 @@ There are 2 significantly different ways of building Docker containers:
 
 Building a container interactively make it possible to install libraries and configure the environment from a shell just like in a typical Linux environment. The modifications can be saved via commits identical to Git, it’s possible to track changes and see the status of modification.\\  
 
-On the other hand Dockerfile builds a container entirely through commands. A Dockerfile identifies a source container to start from (typically a basic Linux installation), then records a series of commands to install libraries and configure the environment. Dockerfiles can also load other Dockerfiles allowing for environment layering and concise organization of various software development projects. Dockerfiles can be versioned using a standard source control versioning tool like Git, allowing revision tracking and archiving of the computational environment.\\
+On the other hand Dockerfile builds a container entirely through commands. A Dockerfile identifies a source container to start from (typically a basic Linux installation), then records a series of commands to install libraries and configure the environment. Dockerfiles can also load other Dockerfiles allowing for environment layering and concise organization of various software development projects. Dockerfiles can be versioned using a standard source control versioning tool like Git, allowing revision tracking and archiving of the computational environment.\cite{chamberlain2014using}\\ 
 
 \subsection{PoC of Docker container}
 All the services in this project are packed using Docker containers. The Docker containers has all the necessary components and libraries to run a particular service. 
 
-In this project the Dockerfile technique is used to create Docker containers. \cite{Docker2014}
+In this project the Dockerfile technique is used to create Docker containers. 
 
+\newpage
 \begin{lstlisting}[frame=single,caption={Dockerfile with command to be carried out},label={{lst:DockerListing}},language=Java]
 FROM hypriot/rpi-java
 COPY contact-0.0.1-SNAPSHOT.jar /data/
