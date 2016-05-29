@@ -1,7 +1,7 @@
 %************************************************
 \chapter{Domain Name Service and Service Discovery}\label{ch:dns}
 %************************************************
-\textit{Topic 5: This chapter will present a brief introduction to Domain Name Service and Service Discovery. A short overview how to use these technology in cluster and cloud computing will be presented.} 
+This chapter will present a brief introduction to Domain Name Service and Service Discovery. A short overview how to use these two technologies in cluster and cloud computing will be presented.
 	
 \section{DNS}
 The Domain Name Service (DNS) is a service that allows humans readable language converting to IP address. In other word DNS allows to type names into the Web browser like www.youtube.com and automatically find that address on the Internet (IP), instead of type the IP-address of the web site.
@@ -14,8 +14,9 @@ The DNS organizes its servers into a hierarchy figure \ref{fig:DNShierarchy} sho
 \end{itemize}
 Each ccTLD identifies a particular country and is two letters long.   
 
-\textbf{At the domain level or user DNS you have the resource you are looking for.??
-}
+
+At the domain level or user DNS the responsibility is delegated by the owner of the Domain. Many companies elect to run their own DNS servers like for instance Microsoft. 
+	
 
 \begin{figure}[bth]
 	\includegraphics[width=1\linewidth]{gfx/DNShierarchy}
@@ -69,4 +70,4 @@ The other approach to service discovery is the server-side discovery pattern. Th
 
 
 \textbf{How may Service Discovery be beneficial in cluster and cloud computing?}  
-like described above, the server-side discovery pattern is used in Cloud computing. The way of register the services in service register and then send a list of available services on the cluster to load-balancer, while the load-balancer find the available service for the client has proved to be efficient.   
+Like described above, the server-side discovery pattern is used in Cloud computing. The way of register the services in service register and then send a list of available services on the cluster to load-balancer, while the load-balancer routes each request to the available service for the client has proved to be efficient.   
