@@ -2,33 +2,33 @@
 \chapter{Introduction}\label{ch:introduction}
 %************************************************
 
-The Fruitshop is a webshop which consists of 4 different Spring boot services namely; Homepage, Basket, Search, and Contact service.\\ 
+The Fruitshop is a webshop which consists of 4 different Spring Cloud services namely; Homepage, Basket, Search, and Contact service.\\ 
 
 
 \textbf{Homepage service}\\
-The Homepage service is the simplest service but could have big load of requests to it. Everyone entering the website needs to be navigated through the Homepage service. 
+The Homepage service is a service that could potentially have a big load of requests. Everyone entering the website needs to be navigated through the Homepage service. 
 The Homepage service consists of a search bar and links to all the other services within the Fruitshop domain.\\ 
 
 \textbf{Basket service }\\
-The basket service is used to place and delete orders. The basket gives an overview of the products chosen to be bought. The user can press the pay button to pay for the chosen products and thereby complete the transaction.\\ 
+The basket service is used to place and delete orders. The basket gives an overview of the products chosen to be bought. The user can press the pay button thus the products would be removed thereby to simulate the completeness of the transaction.\\ 
 
 \textbf{Search service }\\
-The search service gives the user opportunity of searching the entire list of available products within the scope of Fruitshop. The end result of search service is a picture of the product which was looked up through the search service.\\   
+The search service gives the user opportunity of searching the entire list of available products within the scope of Fruitshop. \\   
 
 \textbf{Contact service}\\
-The contact service gives a user the opportunity of contacting the Fruitshop via e-mail. The service is there to provide the user with helpful information in case anything goes wrong or in case of questions.\\
+The contact service gives the user contact information of Fruitshop. The service is there to provide the user with helpful information in case anything goes wrong or in case of questions.\\
 
 The main focus of this project is to understand, design \& implement the following areas:  
 
 \begin{enumerate}
-	\item Spring boot service
-	\item Docker container
-	\item Kubernetes
+	\item Microservices using Spring frameworks 
+	\item Container technology using Docker
+	\item Cluster management using Kubernetes
 \end{enumerate}
 
-The Fruitshop has spring boot services which are packed in Docker containers to make sure that the service runs inside the same environment and thereby is not dependent of underlying system and libraries. 
+The Fruitshop has Spring Cloud services which are packed in Docker containers to make sure that the service runs inside the same environment and thereby is not dependent of underlying system and libraries. 
 
-Furthermore, Kubernetes is used to make the webshop more reliable, stable and fault tolerant. Kubernetes creates pods which contain replica of a services on different nodes within the cluster. Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes and it also handles increase or decreases the number of replicated pods depending on the load on the webshop. 
+Furthermore, Kubernetes is used to manage the cluster and thereby make the webshop more reliable, stable and fault tolerant. %Kubernetes creates pods which contain replica of a services on different nodes within the cluster. Kubernetes keeps track of the pods, if a pod dies then it creates a new pod on one of the nodes and it also handles increase or decreases the number of replicated pods depending on the load on the webshop. 
 
 
 
