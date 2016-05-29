@@ -1,7 +1,7 @@
 %************************************************
 \chapter{Resilience}\label{ch:resilience}
 %************************************************
-This chapter gives a brief introduction to Resilience in microservice architectures and show how Gatling load testing framework can be used for testing. This chapter also shows load testing scenarios against the handed out containers and describe the effects of using patterns.\\
+This chapter gives a brief introduction to Resilience in microservice architectures and show how Gatling load testing framework can be used for testing. This chapter also shows load testing scenarios against the PoC and describes the effects of using patterns??.\\
 
 There are different categories of potential disruptions to system that create the need to implement the resilience in systems. In the figure \ref{ch:resilience} below the sources of disruptions is showed. 
 
@@ -31,9 +31,8 @@ There are different categories of potential disruptions to system that create th
 
 All the factors described above need to be considered in the system to avoid disruption. 
 
-
 To begin with the question really is "what is the actual definition of resilient?". There are different definitions and they strongly depends upon the context it is used inside. In the sense of microservices the definition could sound like so:\\
-\textit{the power or ability to return to the original form, position, etc., after being bent, compressed, or stretched; elasticity.}
+\textit{The power or ability of a microservice to return to the its original form, after being affected by failures according to unusual scenarios.}
 
 Thus, from the definition above the resilient system should be able to cope with problem and at the same time be fast to recover. 
 
@@ -41,9 +40,19 @@ In the case of microservices the services are highly decoupled. By the isolation
 
 This isolation of simple small services makes them independent from each other, so that when one fails the others don’t stop working.   
 
-  
+\section{PoC load tests}
+To load-test the developed PoC containers a tool called Gatling is used. Gatling gives you the ability to record a test scenario for your microservices using web-browsers. A Scala file can be generated from the recorded scenario. Following is a code snippet of the generated Scala code for the PoC which was modified to run 100 times instead of a single run: \begin{lstlisting}[frame=single, ]
+val uri1 = "http://192.168.1.11"
 
+val scn = scenario("RecordedSimulation")
+.exec(http("request_0")
+.get("/search/?w=berry"))
+.pause(4)
+...
+.exec(http("request_4")
+.get("/contact"))
 
+setUp(scn.inject(atOnceUsers(100))).protocols(httpProtocol)
+\end{lstlisting}
 
-
-
+To run the test, a script called \textit{gatling.sh} has to be called. The test results is builed as a HTML-site with different kinds of charts illustrating response time distribution, response time percentiles, requests/responses rates, and others.
