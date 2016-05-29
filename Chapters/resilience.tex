@@ -49,10 +49,14 @@ val scn = scenario("RecordedSimulation")
 .get("/search/?w=berry"))
 .pause(4)
 ...
-.exec(http("request_4")
-.get("/contact"))
 
 setUp(scn.inject(atOnceUsers(100))).protocols(httpProtocol)
 \end{lstlisting}
 
 To run the test, a script called \textit{gatling.sh} has to be called. The test results is builed as a HTML-site with different kinds of charts illustrating response time distribution, response time percentiles, requests/responses rates, and others.
+
+\begin{figure}[bth]
+	\centering 
+	\includegraphics[width=1\linewidth]{gfx/responseTimeDistribution}
+	\caption[responseTimeDistribution]{Response time distribution of the PoC load test} \label{fig:responseTimeDistribution}
+\end{figure}
