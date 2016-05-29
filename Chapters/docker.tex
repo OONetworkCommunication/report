@@ -4,13 +4,13 @@
 This chapter will present a brief introduction to Docker containers.  Design, develop, test, and document a functional proof-of-concept prototype using Docker containers. This builds on top of topic 1 and should be able to
 
 \begin{itemize}
-\item build docker containers of each service in topic 1
-\item run docker containers locally and on a Raspberry Pi
-\item deploy images to Docker Hub
+\item Build docker containers of each service in topic 1
+\item Run docker containers locally and on a Raspberry Pi
+\item Deploy images to Docker Hub
 \end{itemize}
 
 
-Docker containers allows packaging of software applications with all its dependencies and libraries. It makes it easier to create, deploy and run the applications. The layered file Docker file system can be seen below in figure \ref{fig:filesystem}.
+Docker containers allows packaging of software applications with all its dependencies and libraries. It makes it easier to create, deploy and run the applications. The virtual file system  packed in a Docker container can be seen below in figure \ref{fig:filesystem}.
 
 \begin{figure}[bth]
   \centering
@@ -24,8 +24,7 @@ Docker containers allows packaging of software applications with all its depende
 
 
 
-The main purpose of Docker is to ship the whole application with it's whole environment configuration as a single package so that it easily can run on other machines. 
-By doing that the Docker ensures that the application will run on any other machine (Linux, OSX, Windows) regardless of any customized settings the particular machine might have.
+The main purpose of Docker is to ship the whole application with it's whole environment configuration as a single package so that it easily can run on other environments, regardless of any customized settings the particular machine might have.
 
 
 \begin{figure}[bth]
@@ -38,7 +37,8 @@ By doing that the Docker ensures that the application will run on any other mach
 \end{figure}
 
 Docker has resemblance to virtual machines in a way as it can be seen in figure \ref{fig:dockervm}, but Docker allows applications to use the same Linux kernel as the system that they’re running on. By using Docker one can bypass creating virtual machine for every application. 
-An algorithm can be run in docker using any Linux compatible language such as C, Python, Matlab etc. and be compiled using any Linux compatible libraries without causing version or library conflicts with other algorithms.
+
+%An algorithm can be run in docker using any Linux compatible language such as C, Python, Matlab etc. and be compiled using any Linux compatible libraries without causing version or library conflicts with other algorithms.
 
 A docker container can be run at any time with the confidence of that the docker container’s computational environment will be identical. The docker projects remains backwards compatible. 
 
@@ -60,77 +60,86 @@ All the services in this project are packed using Docker containers. The Docker 
 In this project the Dockerfile technique is used to create Docker containers. \cite{Docker2014}
 
 \begin{lstlisting}[frame=single,caption={Dockerfile with command to be carried out},label={{lst:DockerListing}},language=Java]
-From java:8
-COPY /target/Homepage-0.0.1-SNAPSHOT.jar /data/
-EXPOSE 8080
-WORKDIR /data/
-CMD ["java","-jar","Homepage-0.0.1-SNAPSHOT.jar"]
+FROM hypriot/rpi-java
+COPY contact-0.0.1-SNAPSHOT.jar /data/
+EXPOSE 9003
+CMD ["java", "-jar", "contact-0.0.1-SNAPSHOT.jar"]
 \end{lstlisting}
 
-As it can be seen in the listing~\ref{lst:DockerListing} the Dockerfile consists of commands which targets the files placed in the target folder. 
+The listing \ref{lst:DockerListing} shows a Dockerfile example used to build a Docker-image for Contact service. %The Docker file consists of commands which targets the files placed in the target folder. 
 
+%\begin{lstlisting}[frame=single]
+%  COPY /target/Homepage-0.0.1-SNAPSHOT.jar /data/
+%\end{lstlisting}
+%The command line above specifies that the .jar file should be copied to the container
+%
+%\begin{lstlisting}[frame=single]
+%  EXPOSE 8080
+%\end{lstlisting}
+%
+%The command line above instructs Docker to expose the default Spring Boot port on port 8080. 
+%\begin{lstlisting}[frame=single]
+%  WORKDIR /data/
+%\end{lstlisting}
+%
+%
+%The command line above instructs Docker to change the work directory to where the .jar file is placed. 
+%\begin{lstlisting}[frame=single]
+%  CMD ["java","-jar","Homepage-0.0.1-SNAPSHOT.jar"]
+%  
+%\end{lstlisting}
+%
+%The last command line instructs the container to run the .jar file. 
 
-
+The \textit{docker build} command does all the heavy-lifting by creating docker image from Dockerfile. This is shown below:
 
 \begin{lstlisting}[frame=single]
-  COPY /target/Homepage-0.0.1-SNAPSHOT.jar /data/
-\end{lstlisting}
-The command line above specifies that the .jar file should be copied to the container
-
-\begin{lstlisting}[frame=single]
-  EXPOSE 8080
+$ docker build -t bilalkais/contact:latest
 \end{lstlisting}
 
-The command line above instructs Docker to expose the default Spring Boot port on port 8080. 
-\begin{lstlisting}[frame=single]
-  WORKDIR /data/
-\end{lstlisting}
-
-
-The command line above instructs Docker to change the work directory to where the .jar file is placed. 
-\begin{lstlisting}[frame=single]
-  CMD ["java","-jar","Homepage-0.0.1-SNAPSHOT.jar"]
-  
-\end{lstlisting}
-
-The last command line instructs the container to run the .jar file. 
-
-After having done that its possible to build the image. The docker build command does all the heavy-lifting by creating docker image from Dockerfile. This is shown below:
-
-\begin{lstlisting}[frame=single]
-	$ docker build -t rh-th/Homepage .
-\end{lstlisting}
-
-After building the run command is used to run the image inside Docker container. Which is explain in figure \ref{fig:DockerRun}.
-
-
-\begin{figure}[bht]
-  \centering
-      \includegraphics[width=0.5\textwidth]{gfx/container_explainer}
-  \caption{Container explainer}
-  \label{fig:DockerRun}
-\end{figure}
-
-
-After running the application in Docker the service then can be accessed using the browser where the IP address is 127.0.0.1 and with the chosen port number.
-
-\begin{lstlisting}
-http:\\localhost:8080
-\end{lstlisting} 
-
-When verifying the service one noticeable thing was that the services was quite slow when they were deployed to the Raspberry Pi, which does make sense. The development computer used for running the the service locally was much faster then the Raspberry Pi. 
-
-The services was pushed to the Docker hub by doing so the Docker checks for the latest version of the application to be run. 
-
-Docker while running provides a lots of information about running Docker containers. 
-
+After building the image the \textit{docker push} command is used to push the image to the Docker-hub repository. Figure \ref{fig:dockerHub} shows a screenshot of three pushed Docker-images.
 
 \begin{figure}[bth]
-  \centering
-      \includegraphics[width=0.5\textwidth]{gfx/DockerPs}
-  \caption{The Docker application running}
-   \label{fig:DockerPs}
+	\centering
+		\includegraphics[width=1\textwidth]{gfx/dockerHub}
+	\caption{Overview of container architecture with complete file system }
+	\label{fig:dockerHub}
 \end{figure}
+
+To test the builded Docker-image the \textit{docker run} command is used to run the container using the specified image as shown below:
+\begin{lstlisting}[frame=single]
+$ docker run --name contact -e AUTOR="bilalkais" -d -P bilalkais/contact
+\end{lstlisting}
+
+ %Which is explain in figure \ref{fig:DockerRun}.
+
+%\begin{figure}[bth]
+%  \centering
+%      \includegraphics[width=0.5\textwidth]{gfx/container_explainer}
+%  \caption{Container explainer}
+%  \label{fig:DockerRun}
+%\end{figure}
+
+
+%After running the application in Docker the service then can be accessed using the browser where the IP address is 127.0.0.1 and with the chosen port number.
+%
+%\begin{lstlisting}
+%http:\\localhost:8080
+%\end{lstlisting} 
+%
+%When verifying the service one noticeable thing was that the services was quite slow when they were deployed to the Raspberry Pi, which does make sense. The development computer used for running the the service locally was much faster then the Raspberry Pi. 
+%
+%The services was pushed to the Docker hub by doing so the Docker checks for the latest version of the application to be run. 
+%
+%Docker while running provides a lots of information about running Docker containers. 
+%
+%
+%\begin{figure}[bth]
+%  \centering
+%      \includegraphics[width=0.5\textwidth]{gfx/DockerPs}
+%  \caption{The Docker application running}
+%   \label{fig:DockerPs}
+%\end{figure}
 
 
 
